@@ -1,0 +1,24 @@
+{% extends "tasks/layout.html" %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h2>Profile</h2>
+
+        <form action="{% url 'profile' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" value="{{ user.username }}" readonly>
+            </div>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+    </div>
+{% endblock %}
