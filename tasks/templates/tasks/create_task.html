@@ -1,0 +1,53 @@
+{% extends "tasks/layout.html" %}
+{% load static %}
+
+{% block title %}Create Task{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mb-4">Create New Task</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Task Details</h2>
+            <form id="new-task-form">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="new-task-title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="new-task-title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="new-task-desc" class="form-label">Description</label>
+                    <textarea class="form-control" id="new-task-desc" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="new-task-date" class="form-label">Due Date</label>
+                    <input type="datetime-local" class="form-control" id="new-task-date">
+                </div>
+                <div class="mb-3">
+                    <label for="new-task-category" class="form-label">Category</label>
+                    <select class="form-select" id="new-task-category">
+                        <option value="">-- Select Category --</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Task</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Create New Category</h2>
+            <form id="new-category-form">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="new-category-name" class="form-label">Category Name</label>
+                    <input type="text" class="form-control" id="new-category-name" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Category</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<script src="{% static 'tasks/script.js' %}"></script>
